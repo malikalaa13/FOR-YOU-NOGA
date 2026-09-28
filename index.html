@@ -160,14 +160,7 @@ opacity:0;pointer-events:none;filter:blur(14px);transform:scale(1.03);transition
  </div>
 </section>
 
-<!-- PAGE 4 -->
-<section class="stage" id="s4">
- <div class="wrap">
-  <div class="big fl" id="fin" data-d="10"></div>
-  <h1 class="ar fin-t rise" id="final" dir="auto" lang="ar" style="--d:3.5s"></h1>
-  <p class="lab rise" style="margin-top:3rem;--d:5s">Thank you for making it this far.</p>
- </div>
-</section>
+
 
 <script>
 /* ===== EDIT ME ===== */
@@ -218,10 +211,15 @@ setInterval(petal,1900);
 
 // Stage switching
 let cur='s1';
-function go(id){$(cur).classList.remove('on');cur=id;setTimeout(()=>{
- if(id==='s2')mount('cflower');
- if(id==='s4'){mount('fin');$('final').textContent=FINAL_MESSAGE}
- $(id).classList.add('on');$(id).scrollTop=0},600)}
+function go(id){
+  $(cur).classList.remove('on');
+  cur=id;
+  setTimeout(()=>{
+    if(id==='s2')mount('cflower');
+    $(id).classList.add('on');
+    $(id).scrollTop=0;
+  },600);
+}
 
 // NO button
 const noT=["خالص؟","خالص خالص يعني؟","معلش عديها طب 🛐"];
@@ -248,7 +246,11 @@ mount('cflower');$('endmark').innerHTML=flower(true);
 // and the final page opens by itself once the reader rests at the bottom.
 let armed=false,lastDone=false,atEnd=false,endT,finished=false;
 function chk(){clearTimeout(endT);if(lastDone&&atEnd&&!finished)endT=setTimeout(finish,7000)}
-function finish(){if(finished)return;finished=true;clearTimeout(endT);go('s4');for(let i=0;i<14;i++)setTimeout(petal,i*260)}
+function finish(){
+  if(finished)return;
+  finished=true;
+  clearTimeout(endT);
+}
 $('endmark').onclick=finish;
 function reveal(){
  if(armed)return;armed=true;
